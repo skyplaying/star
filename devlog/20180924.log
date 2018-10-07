@@ -1,0 +1,6 @@
+issue1
+start=============
+关于BigDecimal数据不显示问题：
+出现故障原因：Mapper文件当中单词拼写错误导致，高版本的mybatis已经支持BigDecimal，如果使用低版本，注册一个TypeHandler即可。
+end===============
+

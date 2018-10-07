@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sz.mapper.GoodsMapper">
+
+    <insert id="addGoods" parameterType="com.sz.pojo.Goods">
+
+      INSERT INTO shop (goodsName,billStatus,goodsCount,goodsPrice,creationTime,goodsDistrict)
+      VALUE(#{goodsName},#{billStatus},#{goodsCount},#{goodsPrice},#{creationTime},#{goodsDistrict})
+    </insert>
+
+    <update id="update" parameterType="com.sz.pojo.Goods">
+
+        update  shop set goodsName=#{goodsName},goodsPrice=#{goodsPrice},goodsCount=#{goodsCount},
+        billStatus=#{billStatus} where id=#{id}
+
+    </update>
+    <delete id="deleteById">
+
+
+        DELETE FROM shop WHERE id=#{id}
+
+    </delete>
+
+    <select id="queryAll" resultType="com.sz.pojo.Goods">
+
+    select *from shop
+
+    </select>
+    <select id="queryAllByCount" resultType="com.sz.pojo.Goods">
+
+
+       SELECT *FROM goods ORDER BY COUNT DESC;
+    </select>
+    <select id="queryAllByDate" resultType="com.sz.pojo.Goods">
+         SELECT *FROM goods ORDER BY price DESC ;
+    </select>
+    <select id="queryAllPage" resultType="com.sz.pojo.Goods" parameterType="com.sz.pojo.Goods">
+
+     SELECT id ,name,price,create_date as createDate,location,count,unit FROM goods
+    </select>
+    <select id="queryById" resultType="com.sz.pojo.Goods">
+
+        select * from shop where id=#{id}
+    </select>
+    <select id="queryByDistrict" resultType="com.sz.pojo.Goods">
+     select * from shop where goodsDistrict=#{goodsDistrict}
+
+    </select>
+    <select id="queryByPage" resultType="com.github.pagehelper.PageInfo"
+            parameterType="com.github.pagehelper.PageInfo">
+
+         select *from shop
+    </select>
+
+</mapper>
